@@ -24,7 +24,9 @@ namespace BulkyWeb.Controllers
 
 
         }
-
+        /*
+         * This method is for the view page created for the Adding new Categories
+         */
         public IActionResult Create() { 
            
                 return View();

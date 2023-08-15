@@ -1,0 +1,23 @@
+﻿<!--Needed Category to Store the value passed by the users in the form-->
+@model Category
+
+<form method="post">
+    <div class="border p-3 mt-4">
+        <div class=" row pb-2">
+            <h2 class="text-primary">Create Category</h2>
+        </div>
+        <div class="mb-3">
+            <label>Category Name</label>
+            <input type="text" class="form-control" />
+            <label>Display Order</label>
+            <input type="text" class="form-control" />
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:150px">
+            Create
+        </button>
+        <!--for taking the control back to the Category List-->
+        <a asp-controller="Category" asp-action="Index" style="width:350px" class="btn btn-primary">
+            Back to the Category List
+        </a>
+    </div>
+</form>

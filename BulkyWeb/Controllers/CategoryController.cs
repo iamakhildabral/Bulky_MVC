@@ -14,12 +14,21 @@ namespace BulkyWeb.Controllers
         public IActionResult Index()
         {   
             var categoryList = _db.Categories.ToList();
-            Category category2 = null;
+            if (categoryList.Any())
+            {
+                return View(categoryList);
 
-            //return View(categoryList);
- 
-            return Content("No Element Found");
-            
+            }else
+                return Content("No Element Found");
+
+
+
+        }
+
+        public IActionResult Create() { 
+           
+                return View();
+
         }
     }
 }

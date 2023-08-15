@@ -12,7 +12,7 @@ namespace BulkyWeb.Data
         public DbSet<Category> Categories { get; set; }
 
         //seeding data using model builder
-        /*protected override void OnModelCreating(ModelBuilder modelBuilder) 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Category>().HasData(
                 new Category { Id = 1, Name = "Action", DisplayOrder = 1 },
@@ -20,6 +20,6 @@ namespace BulkyWeb.Data
                 new Category { Id = 3, Name = "History", DisplayOrder = 3 }
                 );
 
-        }*/
+        }
     }
 }

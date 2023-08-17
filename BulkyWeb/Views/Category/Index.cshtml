@@ -23,13 +23,10 @@
     <thead>
         <tr>
             <th>
-                Category Name
+                    <b>NAME</b>
             </th>
             <th>
-                Display Order
-            </th>
-            <th>
-                Id
+                    <b>DISPLAY ORDER</b>
             </th>
         </tr>
     </thead>
@@ -37,9 +34,6 @@
         @foreach(var obj in Model.OrderByDescending(u=>u.Name))
         {
             <tr>
-                <td>
-                    @obj.Id
-                </td>
                 <td>
                     @obj.Name
                 </td>

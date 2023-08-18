@@ -69,5 +69,60 @@ namespace BulkyWeb.Controllers
                 return View();
             }
         }
+
+        /*
+         * Now Creating Edit Module where we will have two method
+         * one for the Edit Page which will be somewhat similar to the Create Page and 
+         * Another one for the Post Method which will take the resubmitted data verify it and save it to the database
+         */
+        public IActionResult Edit(int? CategoryID)
+        {
+            if (CategoryID == null && CategoryID == 0)
+            {
+                return NotFound();
+            }
+
+            Category? category = _db.Categories.FirstOrDefault(x => x.Id == CategoryID);
+            if (category == null)
+            {
+                return NotFound();
+            }
+            return View(category);
+
+        }
+
+        /*
+         * This is for the POST request made by the previous method
+         */
+
+        [HttpPost]
+        public IActionResult Edit(Category categoryObj)
+        {
+            /*
+             * For checking whether user has added the same parameters
+             * for both name and category.
+             */
+            if (categoryObj.Name == categoryObj.DisplayOrder.ToString())
+            {
+                ModelState.AddModelError("Name", "Both DisplayOrder and Name cannot have same values:");
+            }
+
+            if (categoryObj.Name.ToLower() == "test")
+            {
+                ModelState.AddModelError("", $"The Name cannot be :\"{categoryObj.Name}\"");
+            }
+
+            if (ModelState.IsValid)
+            {
+                _db.Categories.Add(categoryObj);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            else
+            {
+
+                return View();
+            }
+        }
     }
 }

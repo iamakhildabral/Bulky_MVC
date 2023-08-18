@@ -1,6 +1,7 @@
 ﻿using BulkyWeb.Data;
 using BulkyWeb.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace BulkyWeb.Controllers
 {
@@ -122,6 +123,46 @@ namespace BulkyWeb.Controllers
             {
 
                 return View();
+            }
+        }
+
+        /*
+         * Creating the DELETE View and DELETE POST Method
+         */
+
+        // DELETE GET Method
+        public IActionResult Delete(int? CategoryID)
+        {
+            if (CategoryID == null && CategoryID == 0)
+            {
+                return NotFound();
+            }
+
+            Category? category = _db.Categories.FirstOrDefault(x => x.Id == CategoryID);
+            if (category == null)
+            {
+                return NotFound();
+            }
+            return View(category);
+
+        }
+
+        //DELETE POST Method
+
+        [HttpPost,ActionName("Delete")]
+        public IActionResult DeletePOST(int? id)
+        {
+            var categoryObj = _db.Categories.Find(id);
+
+            if (categoryObj == null)
+            {
+                return NotFound();
+            }
+            else
+            {
+                _db.Remove(categoryObj);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
             }
         }
     }
